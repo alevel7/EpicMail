@@ -1,2 +1,3 @@
 # EpicMail
-A web based app for sending and recieving informations
+a web app that helps people exchange messages/information over the internet. 
+
