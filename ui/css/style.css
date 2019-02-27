@@ -1,0 +1,242 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica,Georgia, 'Times New Roman', Times, serif;
+}
+/*sign up page form*/
+.form{
+    max-width: 200px;
+    min-width: 200px;
+    margin: auto;
+    margin-top: 5%;
+    color: white;
+    background: #2443da;
+    text-align: center;
+    padding: 4%;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px gray;
+}
+.form img{
+    min-width: 45%;
+    height: 90px;
+}
+.form-group>input{
+    border-radius: 5px;
+    height: 20px;
+}
+.form-group>input:focus{
+    border-color:  #2445e7;
+}
+.form-group>label{
+    display: block;
+}
+form button{
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 2px;
+    width: 70px;
+}
+form button:hover{
+    background: #0e27a0;
+    color: white;
+}
+.form>form a{
+    text-decoration: none;
+    color: white;
+    font-size: 10px;
+}
+/*the navtop*/
+nav{
+    background: #2443da;
+    color: white;
+    display: flex;
+}
+.head{
+    font-style: italic;
+    flex: 1;
+    padding: 15px 32px;
+}
+.head>a{
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+}
+
+.button{
+    background: #3654ec;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+}
+.button:hover{
+    background: #0e27a0;
+    color: white;
+}
+
+/* inbox css*/
+.container{
+    display: flex;
+    flex-direction: column;
+}
+.container>p{
+    background: #0e27a0;
+    color: white;
+    padding-left: 5px;
+    border-bottom: 0.5px solid white;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 20px;
+}
+.dropdown{
+    display: flex;
+    background: #0e27a0;
+    color: white;
+    padding: 5px;
+    margin-bottom: 1px;
+}
+.dropdown span{
+    flex: 1;
+    cursor: pointer;
+}
+.dropmenu{
+    transition: display 2s
+}
+.menu-lines{
+    cursor: pointer;
+}
+.line{
+    width: 25px;
+    height: 5px;
+    margin-bottom: 2px;
+    background: white;
+}
+.side-nav ul{
+    position: absolute;
+    width: 100%;
+    display: none;
+}
+.side-nav ul li{
+    background: #0e27a0;
+    margin-bottom: 1px;
+    padding: 5px;
+    width: 100%;
+}
+.side-nav ul li:hover{
+    background: #3654ec;
+}
+.side-nav ul li a{
+    color: white;
+    text-decoration: none;
+}
+
+
+/*the main-box css*/
+.main-box{
+    padding:8px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.mail{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 5px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 3px;
+}
+.mail a{
+    color: black;
+    text-decoration: none;
+}
+#compose{
+    position: absolute;
+    background: lightblue;
+    top: 65%;
+    left: 80%;
+    border-radius: 50%;
+    box-shadow: 2px 2px 2px gray;
+}
+#compose img{
+    position: relative;
+    width: 70%;
+    padding: 10px;
+    margin:auto;
+}
+.mail span{
+    font-style: italic;
+    font-size:14px;
+    color: #3654ec;
+    font-weight: bold;
+}
+
+/*mail content css*/
+.content p{
+    font-weight: 1000;
+    font-size: 20px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid gray;
+}
+.content h4{
+    font-size: 20px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid gray;
+}
+
+
+/*css for compose_mail to be sent*/
+.compose_mail input{
+  height: 39px;
+  flex: 1;
+  border-radius: 3px;
+}
+.compose_mail input:focus, .compose_mail textarea{
+    border-color: rgba(174, 169, 240, 9);
+}
+.compose_mail label{
+    width: 15%;
+}
+.compose_mail div{
+    display: flex;
+    margin-bottom: 5px;
+}
+.compose_mail textarea{
+    width: 100%;
+    font-family: calibri;
+    font-size: 20px;
+}
+
+/*css for reset page*/
+.reset{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 10px;
+}
+.reset p, .reset label{
+    margin-bottom: 5px;
+}
+#email{
+    height: 25px;
+}
+
+.reset input[type="submit"]{
+    background: #2443da;
+    color: white;
+    height: 25px;
+}
+
+/*group page css*/
+.addbutton{
+    padding: 10px;
+}
+
+.addbutton input,.addbutton a{
+    height: 30px;
+    padding: 5px;
+    background: #0e27a0;
+    color: white;
+    text-decoration: none;
+}
+.addbutton input:hover,.addbutton a:hover{
+    background: #2443da;
+    color: white;
+}
