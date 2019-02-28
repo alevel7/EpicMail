@@ -3,8 +3,11 @@
     padding: 0;
 }
 
-body {
+/* body {
     background: #0e27a0;
+} */
+.container-main{
+    background: none;
 }
 
 .bigText {
@@ -84,18 +87,21 @@ nav>a:hover {
     margin-left: auto;
     margin-right: 2.5rem;
     padding: 2.5rem;
-    box-shadow: 2px 2px 5px rgb(58, 56, 56);
+    box-shadow: -3px 2px 5px rgb(58, 56, 56);
     border-radius: 2rem;
     width: 20rem;
     color: white;
+    text-align: center;
 }
 
 .form>form h4 {
     color: white;
     text-align: center;
+    margin-top: 2rem;
 }
 .form>form>a{
     color: white;
+
 }
 .form-group {
     display: flex;
@@ -122,5 +128,9 @@ nav>a:hover {
 .form>form>button{
     background: #0e27a0;
     color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
 }
 
