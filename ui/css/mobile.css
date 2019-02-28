@@ -73,6 +73,9 @@ nav{
     background: #0e27a0;
     color: white;
 }
+.form>form h4{
+    display: none;
+}
 
 /* inbox css*/
 .container{
