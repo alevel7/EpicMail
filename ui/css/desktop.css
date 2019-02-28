@@ -10,7 +10,9 @@ body {
 .bigText {
     font-size: 2rem;
 }
-
+.hidden{
+    display: none;
+}
 .mediumText {
     font-size: 1.5rem;
 }
@@ -27,6 +29,9 @@ label {
 .mt-1 {
     margin-top: 1rem;
 }
+.ml-1{
+    margin-left: 1rem;
+}
 
 
 .button {
@@ -38,7 +43,25 @@ label {
     border-left: 1px solid black;
     border-radius: 1.5rem;
 }
-
+.button_de{
+    text-decoration: none;
+    background: #279ae2;
+    width: 8rem;
+    height: 2rem;
+    margin-top: 0.6rem;
+    padding: 5px;
+    color: white;
+    text-align: center;
+    margin-right: 1rem;
+    box-shadow: 3px 1px 3px white;
+    border-radius: 1rem;
+}
+.button_de:hover{
+    box-shadow: none;
+}
+.delButton>img{
+    height: 2vh;
+}
 /*the navtop*/
 nav {
     background: #0878bd;
@@ -46,7 +69,11 @@ nav {
     display: flex;
     border-bottom: 1px solid white;
 }
-
+nav>img{
+    width: 3rem;
+    border-radius: 50%;
+    margin-right: 2rem;
+}
 .head {
     font-style: italic;
     flex: 1;
@@ -60,7 +87,6 @@ nav {
 }
 
 nav>a {
-    border-top-left-radius: 2rem;
     box-shadow: 1px 1px 0px gray;
     background: #0878bd;
     font-size: 1.9rem;
@@ -127,3 +153,90 @@ nav>a:hover {
     color: white;
 }
 
+
+/*the inbox page*/
+.side-nav .dropdown{
+    display: none;
+}
+.inbox{
+    display: flex;
+}
+.main-box{
+    background: #0a1970;
+    width: 85vw;
+    padding: 10px;
+    overflow: auto;
+    height: 100vh;
+    border-top: 0.5px solid rgb(146, 143, 143);
+}
+/*inbox side nav and top middle nav*/
+.side-nav{
+    background: #0878bd;
+}
+.special{
+    display: flex;
+    height: 3vh;
+    padding: 1rem;
+}
+.special ul{
+    display: inline-flex;
+    list-style-type: none;
+    margin-left: 10rem;
+}
+.special ul li{
+    margin-left: 1.5rem;
+}
+.special p{
+    color: white;
+}
+#dropmenu{
+    width: 15vw;
+    border-top: 0.5px solid rgb(146, 143, 143);
+    padding: 1rem;
+    overflow: auto;
+}
+#dropmenu li>a,.special ul>li>a{
+    color: white;
+    text-decoration: none;
+}
+#dropmenu li>img, .special img{
+    height: 1rem;
+    margin-right: 5px;
+}
+#dropmenu li{
+    list-style-type: none;
+    padding: 1rem;
+}
+.active{
+    border-right: 3px solid white;
+    background: #0e27a0;
+}
+.container{
+    background: #0a1970;
+}
+/*inbox mail list view*/
+.mail{
+    display: flex;
+    border-bottom: 0.1px solid rgb(146, 143, 143);
+    color: white;
+    padding: 0.5rem;
+    justify-content: space-around;
+}
+.mail>div>a{
+    display: flex;
+    color: white;
+    justify-content: space-around;
+    text-decoration: none;
+}
+.mail>div{
+    margin-left: 1.5rem;
+    width: 40vw;  
+}
+
+
+.last{
+    order: 3;
+}
+.space{
+    width: 25vw;
+}
