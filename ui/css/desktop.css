@@ -251,3 +251,12 @@ nav>a:hover {
 .compose_mail button{
     background: #0e27a0;
 }
+
+/*group page css*/
+.groups p{
+    color: white;
+}
+.addbutton input{
+    background: #0e27a0;
+    
+}
