@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>EPICMAIL</title>
+    <title>EPICMAIL-sign up</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" media="screen and (max-width: 767px)" href="css/mobile.css" />
     <link rel="stylesheet" media="screen and (min-width: 768px)" href="css/desktop.css" />
@@ -14,28 +14,42 @@
 <body>
     <nav>
         <span class="head bigText"><a href="index.html">EpicMail</a></span>
-        <a href="SignUp.html" class="button">Sign Up</a>
+        <a href="index.html" class="button">Sign In</a>
     </nav>
 
 
     <div class="form">
         <div class="indexlogo">
-            <h4>SIGN IN</h4>
+            <h4>SIGN UP</h4>
             <img src="img/email.png" alt="Mail logo">
         </div>
 
         <form action="">
-            <h4 class="mediumText">SIGN IN</h4>
+            <h4 class="mediumText">SIGN UP</h4>
             <div class="form-group mb-1">
-                <label for="username" class="mediumText">Email</label>
-                <input type="text" name="" id="username" class="formInput">
+                <label for="email" class="mediumText">Email</label>
+                <input type="email" name="" id="email" class="formInput">
             </div>
-            <div class="form-group  mb-1">
+            <div class="form-group mb-1">
+                <label for="fname" class="mediumText">First Name</label>
+                <input type="text" name="" id="fname" class="formInput">
+            </div>
+            <div class="form-group">
+                <label for="lname" class="mediumText">Last Name</label>
+                <input type="text" name="" id="lname" class="formInput">
+            </div>
+
+            <div class="form-group mb-1">
                 <label for="password" class="mediumText">Password</label>
                 <input type="password" name="" id="password" class="formInput">
             </div>
+             <div class="form-group mb-1">
+                <label for="password" class="mediumText">Confirm Password</label>
+                <input type="password" name="" id="password" class="formInput">
+            </div>
+            <button type="submit" class="button">Sign Up</button>
             <button type="submit" class="button">Log In</button>
-            <a href="reset.html">Forgot password?</a>
+            <p class="mt-1"><a href="reset.html">Forgot password?</a></p> 
         </form>
 
     </div>
