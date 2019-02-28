@@ -59,18 +59,18 @@ nav {
     font-weight: bolder;
 }
 
-nav>a {
+/* nav>a {
     border-top-left-radius: 2rem;
     box-shadow: 1px 1px 0px gray;
     background: #0878bd;
     font-size: 1.9rem;
-}
+} */
 
-nav>a:hover {
+/* nav>a:hover {
     color: white;
     background: #0e27a0;
     font-size: 1.9rem;
-}
+} */
 
 /*the sign in page form*/
 .indexlogo h4 {
@@ -134,3 +134,25 @@ nav>a:hover {
     margin-bottom: 2rem;
 }
 
+
+
+
+
+
+
+
+.aButton{
+    background: #0e27a0;
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    font-size: 1.3rem;
+    height: 1rem;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    border: 0.1px solid white;
+    border-radius: 1rem;   
+}
+.aButton:hover{
+    background: #2543d8;
+}
