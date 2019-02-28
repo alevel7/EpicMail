@@ -152,6 +152,9 @@ nav>a:hover {
     background: #0e27a0;
     color: white;
 }
+.widerHeight{
+    height: 10rem;
+}
 
 
 /*the inbox page*/
@@ -239,4 +242,12 @@ nav>a:hover {
 }
 .space{
     width: 25vw;
+}
+
+/*compose mail css*/
+.compose_mail{
+    color: white;
+}
+.compose_mail button{
+    background: #0e27a0;
 }
