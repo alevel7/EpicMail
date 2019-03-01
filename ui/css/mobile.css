@@ -108,8 +108,12 @@ nav{
     flex: 1;
     cursor: pointer;
 }
-.dropmenu{
-    transition: display 2s
+#dropmenu{
+    transition: display 2s ease-in;
+}
+#dropmenu li>img{
+    height: 1rem;
+    margin-right: 5px;
 }
 .menu-lines{
     cursor: pointer;
@@ -175,8 +179,14 @@ nav{
     font-size:14px;
     color: #3654ec;
     font-weight: bold;
+    padding-top: 7px;
 }
-
+.mail>div{
+    width: 200px
+}
+.mail>div>a>p{
+    font-size: 0.8rem;
+}
 /*mail content css*/
 .content p{
     font-weight: 1000;
@@ -276,6 +286,12 @@ nav{
 .mb-1{
     margin-bottom: 1rem;
 }
+.delButton>img{
+    height: 2vh;
+}
+.mhidden{
+    display: none;
+}
 .form>form>button{
     background: #0e27a0;
     display: block;
@@ -289,5 +305,6 @@ nav{
     border-left: 1px solid black;
     border-radius: 1.5rem;
 }
-
-    
+.special{
+    display: none;
+}
