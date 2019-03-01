@@ -37,15 +37,14 @@ label {
 }
 .aButton{
     background: #0e27a0;
-    color: white;
-    text-decoration: none;
-    padding: 1rem;
-    font-size: 1.3rem;
     height: 1rem;
-    margin-top: 0.5rem;
-    margin-right: 0.5rem;
-    border: 0.1px solid white;
-    border-radius: 1rem;   
+    margin-top: 0.9rem;
+    margin-right    : 0.5rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    border: 1px solid white; 
 }
 .aButton:hover{
     background: #2543d8;
@@ -90,6 +89,8 @@ nav>img{
     width: 3rem;
     border-radius: 50%;
     margin-right: 2rem;
+    height: 3rem;
+    margin-top: 0.5rem;
 }
 .head {
     font-style: italic;
