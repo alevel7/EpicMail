@@ -273,3 +273,32 @@ nav>img{
     background: #0e27a0;
     
 }
+
+/*css for view mail page*/
+.content{
+    width: 70%;
+}
+.content p{
+    font-size: 2rem;
+    color: white;
+    padding: 1rem;
+    border-bottom: 0.5px solid gray;
+}
+.content small{
+    color: white;
+}
+.content h4{
+    color: white;
+}
+.content div{
+    color: white;
+    padding: 1rem;
+}
+.addbutton input:hover{
+    background: white;
+    color: #0e27a0;
+}
+.addbutton a:hover{
+    background: white;
+    color: #0e27a0;
+}
