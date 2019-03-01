@@ -308,3 +308,6 @@ nav{
 .special{
     display: none;
 }
+.widerHeight{
+    height: 10rem;
+}
