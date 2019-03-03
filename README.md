@@ -1,9 +1,9 @@
-#EPIC MAIL
+# EPIC MAIL
 A web app that helps people **exchange messages/information** over the internet. 
 
-##Built with
+## Built with
 _HTML, CSS, JAVASCRIPT_
 
 
-##Author
+## Author
 -kazeem Taiwo Adeyinka
