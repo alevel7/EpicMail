@@ -1,0 +1,36 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true,
+        "mocha": true
+    },
+    "extends": "airbnb",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "plugins": [
+        "mocha"
+      ],
+    "rules": {
+        "mocha/no-exclusive-tests": "error",
+        "semi": "error",
+        "no-unused-vars":[
+            "error",
+            {
+                "vars":"local",
+                "args":"none"
+            }
+        ]
+    }
+}
+
