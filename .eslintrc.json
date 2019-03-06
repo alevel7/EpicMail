@@ -18,19 +18,15 @@
             "jsx": true
         }
     },
-    "plugins": [
-        "mocha"
-      ],
     "rules": {
         "mocha/no-exclusive-tests": "error",
         "semi": "error",
-        "no-unused-vars":[
+        "no-unused-vars": [
             "error",
             {
-                "vars":"local",
-                "args":"none"
+                "vars": "local",
+                "args": "none"
             }
         ]
     }
 }
-

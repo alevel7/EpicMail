@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EPICMAIL-{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" media="screen and (max-width: 767px)" href="/public/css/mobile.css" />
+    <link rel="stylesheet" media="screen and (min-width: 768px)" href="/public/css/desktop.css" />
+</head>
+
+<body>
+    <div class="container-main">
+        {{#if signup}}
+
+        <nav>
+            <span class="head bigText"><a href="/v2/index">EpicMail</a></span>
+            <a href="/v2/index" class="aButton">Sign In</a>
+        </nav>
+
+        {{else if signin}}
+
+        <nav>
+            <span class="head bigText"><a href="/v2/index">EpicMail</a></span>
+            <a href="/v2/auth/signup" class="aButton">Sign Up</a>
+        </nav>
+
+        {{/if}}
+
+        {{> _msg}}
+        {{{body}}}
+
+    </div>
+
+</body>
+
+</html>
