@@ -17,7 +17,7 @@ module.exports = {
                 'subject': data.subject,
                 'message': data.message,
                 'parentMessageId': null,
-                'status': 'draft' || 'sent' || 'read'
+                'status': ''
             };
             this.messages.push(newMessage);
             return newMessage;
@@ -33,6 +33,12 @@ module.exports = {
         allDraft(status) {
             return this.messages.filter((message) => {
                 return message.status === 'draft';
+            })
+        }
+        allReceived(id){
+            let theMessages = this.messages.filter(message=>message.recieverId === id);
+            return theMessages.filter((message)=>{
+                return message.status === "read" || message.status === "unread";
             })
         }
     }

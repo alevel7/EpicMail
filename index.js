@@ -61,14 +61,20 @@ app.get('/v1/index', (req, res) => {
     signin: signin
   })
 })
-
+//route to get the sign up page
 app.get('/v1/auth/signup', (req, res) => {
   const signup = 'signup';
   res.render('signUp', {
     signup: signup
   })
 })
-//post to handle sign in form
+
+//route to get the compose message form
+app.get('/v1/compose',(req, res)=>{
+  res.render('compose')
+})
+
+//route to handle sign in form
 app.post('/v1/auth/login', (req, res)=>{
   let current_user = users_db.findOne(req.body.email);
   if(current_user && current_user.password === req.body.password){
@@ -79,7 +85,12 @@ app.post('/v1/auth/login', (req, res)=>{
     res.redirect('/v1/index')
   }
 })
+//route to handle creating and sending a mail form
+app.post('/v1/messages',(req, res)=>{
+  
+})
 
+//route to create a new user
 app.post('/v1/auth/signup', (req, res) => {
   const newUser = users_db.create({
     'email': req.body.email,
@@ -93,8 +104,9 @@ app.post('/v1/auth/signup', (req, res) => {
 
 app.get('/v1/messages', (req, res) => {
   let current_user = users_db.users.find(user => user.login === true);
-  const messages = 
-  res.render('inbox');
+  const messages = messages_db.allReceived(current_user.id);
+  console.log(messages);
+  // res.render('inbox',{messages});
 })
 
 //version two for rest api
