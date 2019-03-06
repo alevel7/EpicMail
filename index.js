@@ -66,7 +66,9 @@ app.get('/v2/auth/signup', (req, res) => {
     signup: signup
   })
 })
-app.post('/v2/auth/signup', (req, res) => {
+
+//version one of rest api to powert sign up page
+app.post('/v1/auth/signup', (req, res) => {
   const newUser = users_db.create({
     'email': req.body.email,
     'firstName': req.body.firstName,
@@ -78,7 +80,7 @@ app.post('/v2/auth/signup', (req, res) => {
 })
 
 //create user in rest
-app.post('/v1/auth/signup', (req, res) => {
+app.post('/v2/auth/signup', (req, res) => {
   const newUser = users_db.create({
     'email': req.body.email,
     'firstName': req.body.firstName,
