@@ -12,6 +12,7 @@ const message = require('./db/models/message')
 
 const app = express();
 const users_db = new user.User();
+const messages_db = new message.Message()
 // MIDDLEWARE WARES
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
@@ -53,21 +54,32 @@ app.get('/', (req, res) => {
   })
 })
 
-app.get('/v2/index', (req, res) => {
+//version one to power sign up page
+app.get('/v1/index', (req, res) => {
   const signin = 'signin';
   res.render('index', {
     signin: signin
   })
 })
 
-app.get('/v2/auth/signup', (req, res) => {
+app.get('/v1/auth/signup', (req, res) => {
   const signup = 'signup';
   res.render('signUp', {
     signup: signup
   })
 })
+//post to handle sign in form
+app.post('/v1/auth/login', (req, res)=>{
+  let current_user = users_db.findOne(req.body.email);
+  if(current_user && current_user.password === req.body.password){
+    users_db.logIn(req.body.email);
+    res.redirect('/v1/messages')
+  }else{
+    req.flash('error_msg', 'You are not registered, please register ')
+    res.redirect('/v1/index')
+  }
+})
 
-//version one of rest api to powert sign up page
 app.post('/v1/auth/signup', (req, res) => {
   const newUser = users_db.create({
     'email': req.body.email,
@@ -76,10 +88,16 @@ app.post('/v1/auth/signup', (req, res) => {
     'password': req.body.password
   });
   req.flash('success_msg', 'Registeration Successful,please login ')
-  res.redirect('/v2/index');
+  res.redirect('/v1/index');
 })
 
-//create user in rest
+app.get('/v1/messages', (req, res) => {
+  let current_user = users_db.users.find(user => user.login === true);
+  const messages = 
+  res.render('inbox');
+})
+
+//version two for rest api
 app.post('/v2/auth/signup', (req, res) => {
   const newUser = users_db.create({
     'email': req.body.email,
@@ -90,7 +108,13 @@ app.post('/v2/auth/signup', (req, res) => {
   res.json({"status":201,"data":[newUser]})
 })
 
-
+app.post('/v2/auth/login', (req, res)=>{
+  let current_user = users_db.findOne(req.body.email);
+  if(current_user && current_user.password === req.body.password){
+    users_db.logIn(req.body.email);
+    res.json({"status":200,"data":[current_user]})
+  }
+})
 
 
 //listen for requests

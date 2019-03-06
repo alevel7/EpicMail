@@ -17,7 +17,8 @@ module.exports = {
                 'email': data.email || '',
                 'firstName': data.firstName || '',
                 'lastName': data.lastName || '',
-                'password': data.password || ''
+                'password': data.password || '',
+                'login':false
             };
             this.users.push(newUser);
             return newUser;
@@ -27,6 +28,14 @@ module.exports = {
         }
         getId(email){
             return this.findOne(email).id;
+        }
+        isLoggedIn(email){
+            return this.findOne(email).login;
+        }
+        logIn(email){
+            let index = this.users.indexOf(this.findOne(email));
+            this.users[index].login = true;
+            return true;
         }
     }
     
