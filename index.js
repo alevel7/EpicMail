@@ -70,24 +70,46 @@ app.get('/v1/auth/signup', (req, res) => {
 })
 
 //route to get the compose message form
-app.get('/v1/compose',(req, res)=>{
+app.get('/v1/compose', (req, res) => {
   res.render('compose')
 })
 
 //route to handle sign in form
-app.post('/v1/auth/login', (req, res)=>{
+app.post('/v1/auth/login', (req, res) => {
   let current_user = users_db.findOne(req.body.email);
-  if(current_user && current_user.password === req.body.password){
+  console.log(current_user);
+  if (current_user && current_user.password === req.body.password) {
     users_db.logIn(req.body.email);
     res.redirect('/v1/messages')
-  }else{
+  } else {
     req.flash('error_msg', 'You are not registered, please register ')
     res.redirect('/v1/index')
   }
 })
 //route to handle creating and sending a mail form
-app.post('/v1/messages',(req, res)=>{
-  
+app.post('/v1/messages', (req, res) => {
+  let senderId = users_db.getId(req.body.from)
+  let recieverId = users_db.getId(req.body.to)
+  if (recieverId) {
+    messages_db.create({
+      'senderId': senderId,
+      'recieverId': recieverId,
+      'subject': req.body.subject,
+      'message': req.body.content,
+      'status': 'sent'
+    })
+  } else {
+    messages_db.create({
+      'senderId': current_user.id,
+      'recieverId': recieverId,
+      'subject': req.body.subject,
+      'message': req.body.content,
+      'status': 'draft'
+    })
+  }
+  console.log(messages_db.messages);
+  req.flash('success_msg', 'sent');
+  res.redirect('/v1/compose')
 })
 
 //route to create a new user
@@ -106,7 +128,9 @@ app.get('/v1/messages', (req, res) => {
   let current_user = users_db.users.find(user => user.login === true);
   const messages = messages_db.allReceived(current_user.id);
   console.log(messages);
-  // res.render('inbox',{messages});
+  res.render('inbox', {
+    messages
+  });
 })
 
 //version two for rest api
@@ -117,17 +141,43 @@ app.post('/v2/auth/signup', (req, res) => {
     'lastName': req.body.lastName,
     'password': req.body.password
   });
-  res.json({"status":201,"data":[newUser]})
+  res.json({
+    "status": 201,
+    "data": [newUser]
+  })
 })
 
-app.post('/v2/auth/login', (req, res)=>{
+app.post('/v2/auth/login', (req, res) => {
   let current_user = users_db.findOne(req.body.email);
-  if(current_user && current_user.password === req.body.password){
+  if (current_user && current_user.password === req.body.password) {
     users_db.logIn(req.body.email);
-    res.json({"status":200,"data":[current_user]})
+    res.json({
+      "status": 200,
+      "data": [current_user]
+    })
   }
 })
 
+app.post('/v2/messages', (req, res) => {
+  let current_user = users_db.create({
+    "email": "kazeem@epicmail.com",
+    "firstName": "kaze",
+    "lastName": "me",
+    "password": "dfg23t"
+ })
+  let sender = new message.Message(current_user);
+
+  let lastMessage = sender.create({
+    'recieverId': req.body.recieverId,
+    'subject': req.body.subject,
+    'message': req.body.message,
+    'status': req.body.status
+  });
+  res.json({
+    "status": 201,
+    "data": [lastMessage]
+  })
+})
 
 //listen for requests
 app.listen(process.env.PORT || 4000, function () {

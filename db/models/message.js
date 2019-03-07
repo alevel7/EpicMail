@@ -7,17 +7,18 @@ module.exports = {
             this.messageId = 0;
             this.sender = sender;
             this.recieverId = '';
+            this.parentMessageId= 0;
         }
         create(data) {
             const newMessage = {
                 'id': ++this.messageId,
                 'senderId': this.sender.id,
-                'recieverId': allUsers.getId(data.recieverEmail),
+                'recieverId': 0,
                 'createdOn': new Date(),
                 'subject': data.subject,
                 'message': data.message,
-                'parentMessageId': null,
-                'status': ''
+                'parentMessageId':++this.parentMessageId,
+                'status': data.status
             };
             this.messages.push(newMessage);
             return newMessage;
