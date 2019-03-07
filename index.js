@@ -137,14 +137,14 @@ app.post('/v2/messages', (req, res) => {
       "status": 406,
       "data": []
     })
-  }else{
+  } else {
     const newMessage = new message().create({
-      "subject":req.body.subject,
-      "message":req.body.message,
-      "parentMessageId":0,
-      "status":req.body.status,
-      "senderId":req.body.from,
-      "recieverId":req.body.to
+      "subject": req.body.subject,
+      "message": req.body.message,
+      "parentMessageId": 0,
+      "status": req.body.status,
+      "senderId": req.body.from,
+      "recieverId": req.body.to
     })
 
     newMessage.id = messages_database.id;
@@ -158,10 +158,10 @@ app.post('/v2/messages', (req, res) => {
 
 //api to fetch all recieved mails
 app.get('/v2/messages', (req, res) => {
-  let allMessages=messages_database.allReceived(2);
+  let allMessages = messages_database.allReceived(2);
   res.json({
-    "status":200,
-    "data":[
+    "status": 200,
+    "data": [
       allMessages
     ]
   })
@@ -170,20 +170,20 @@ app.get('/v2/messages', (req, res) => {
 
 //api to fetch all unread mails
 app.get('/v2/messages/unread', (req, res) => {
-  let allMessages=messages_database.allUnread('unread');
+  let allMessages = messages_database.allUnread('unread');
   res.json({
-    "status":200,
-    "data":[
+    "status": 200,
+    "data": [
       allMessages
     ]
   })
 })
 //api to fetch all sent mails
 app.get('/v2/messages/sent', (req, res) => {
-  let allMessages=messages_database.allSent('sent');
+  let allMessages = messages_database.allSent('sent');
   res.json({
-    "status":200,
-    "data":[
+    "status": 200,
+    "data": [
       allMessages
     ]
   })
@@ -191,18 +191,44 @@ app.get('/v2/messages/sent', (req, res) => {
 
 //api to fetch individual  mails
 app.get('/v2/messages/:id', (req, res) => {
-  let message = messages_database.messages.find((current)=>{
+  let message = messages_database.messages.find((current) => {
     return current.id = req.params.id;
   })
   res.json({
-    "status":200,
-    "data":[
+    "status": 200,
+    "data": [
       message
     ]
   })
 })
 
 
+//api to fetch individual  mails
+app.get('/v2/messages/:id', (req, res) => {
+  let message = messages_database.messages.find((current) => {
+    return current.id = req.params.id;
+  })
+  res.json({
+    "status": 200,
+    "data": [
+      message
+    ]
+  })
+})
+
+app.delete('/v2/messages/:id', (req, res) => {
+  let messageId = messages_database.messages.findIndex((current) => {
+    return current.id == req.params.id;
+  })
+  let message =  messages_database.messages[messageId];
+  messages_database.messages[messageId] = '';
+  res.json({
+    "status": 200,
+    "data": [{
+      "message": message.message
+    }]
+  });
+})
 
 
 //listen for requests

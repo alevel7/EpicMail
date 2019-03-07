@@ -34,7 +34,7 @@ module.exports = {
                     return message.status === status;
                 })
             }
-
+            
             allUnread(status) {
                 return this.messages.filter((message) => {
                     return message.status === status;
@@ -47,7 +47,7 @@ module.exports = {
             }
             allReceived(id) {
                 let theMessages = this.messages.filter(message => message.recieverId === id);
-                console.log(theMessages)
+        
                 return theMessages.filter((message) => {
                     return message.status === "read" || message.status === "unread";
                 })
