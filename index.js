@@ -7,12 +7,15 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
 const request = require('supertest');
-const user = require('./db/models/User')
-const message = require('./db/models/message')
+const users_dbms = require('./db/models/User')
+const message_dbms = require('./db/models/message')
 
 const app = express();
-const users_db = new user.User();
-const messages_db = new message.Message()
+
+const users_database = new users_dbms.db();
+const user = users_dbms.currentUser;
+const messages_database = new message_dbms.db();
+const message = message_dbms.Message;
 // MIDDLEWARE WARES
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
@@ -47,8 +50,10 @@ app.use(function (req, res, next) {
 //static files
 app.use("/public", express.static(path.join(__dirname, 'public')));
 
+
 app.get('/', (req, res) => {
   const signin = 'signin';
+  console.log(users_database);
   res.render('index', {
     signin: signin
   })
@@ -68,116 +73,137 @@ app.get('/v1/auth/signup', (req, res) => {
     signup: signup
   })
 })
-
 //route to get the compose message form
 app.get('/v1/compose', (req, res) => {
   res.render('compose')
 })
 
-//route to handle sign in form
-app.post('/v1/auth/login', (req, res) => {
-  let current_user = users_db.findOne(req.body.email);
-  console.log(current_user);
-  if (current_user && current_user.password === req.body.password) {
-    users_db.logIn(req.body.email);
-    res.redirect('/v1/messages')
-  } else {
-    req.flash('error_msg', 'You are not registered, please register ')
-    res.redirect('/v1/index')
-  }
-})
-//route to handle creating and sending a mail form
-app.post('/v1/messages', (req, res) => {
-  let senderId = users_db.getId(req.body.from)
-  let recieverId = users_db.getId(req.body.to)
-  if (recieverId) {
-    messages_db.create({
-      'senderId': senderId,
-      'recieverId': recieverId,
-      'subject': req.body.subject,
-      'message': req.body.content,
-      'status': 'sent'
-    })
-  } else {
-    messages_db.create({
-      'senderId': current_user.id,
-      'recieverId': recieverId,
-      'subject': req.body.subject,
-      'message': req.body.content,
-      'status': 'draft'
-    })
-  }
-  console.log(messages_db.messages);
-  req.flash('success_msg', 'sent');
-  res.redirect('/v1/compose')
-})
-
-//route to create a new user
-app.post('/v1/auth/signup', (req, res) => {
-  const newUser = users_db.create({
-    'email': req.body.email,
-    'firstName': req.body.firstName,
-    'lastName': req.body.lastName,
-    'password': req.body.password
-  });
-  req.flash('success_msg', 'Registeration Successful,please login ')
-  res.redirect('/v1/index');
-})
-
 app.get('/v1/messages', (req, res) => {
-  let current_user = users_db.users.find(user => user.login === true);
-  const messages = messages_db.allReceived(current_user.id);
-  console.log(messages);
-  res.render('inbox', {
-    messages
-  });
+  res.render('inbox');
 })
 
-//version two for rest api
+app.get('/v1/messages/unread', (req, res) => {
+  res.render('unread')
+});
+
+app.get('/v1/messages/sent', (req, res) => {
+  res.render('sent')
+})
+app.get('/v1/messages/:id', (req, res) => {
+  res.render('viewmail')
+})
+
+
+
+
+//post routes to version two for rest api
 app.post('/v2/auth/signup', (req, res) => {
-  const newUser = users_db.create({
+  const newUser = new user().create({
     'email': req.body.email,
     'firstName': req.body.firstName,
     'lastName': req.body.lastName,
     'password': req.body.password
   });
+  newUser.id = users_database.id;
+  users_database.save(newUser);
+  console.log(users_database.users)
   res.json({
     "status": 201,
     "data": [newUser]
   })
 })
-
+//api to handle log in 
 app.post('/v2/auth/login', (req, res) => {
-  let current_user = users_db.findOne(req.body.email);
+  let current_user = users_database.findOne(req.body.email);
+  console.log(current_user);
   if (current_user && current_user.password === req.body.password) {
-    users_db.logIn(req.body.email);
+    users_database.logIn(req.body.email);
     res.json({
       "status": 200,
       "data": [current_user]
     })
+  } else {
+    res.json({
+      "status": 404,
+      "data": []
+    })
   }
 })
 
+//api to process sent messages
 app.post('/v2/messages', (req, res) => {
-  let current_user = users_db.create({
-    "email": "kazeem@epicmail.com",
-    "firstName": "kaze",
-    "lastName": "me",
-    "password": "dfg23t"
- })
-  let sender = new message.Message(current_user);
+  if (!req.body.from) {
+    res.json({
+      "status": 406,
+      "data": []
+    })
+  }else{
+    const newMessage = new message().create({
+      "subject":req.body.subject,
+      "message":req.body.message,
+      "parentMessageId":0,
+      "status":req.body.status,
+      "senderId":req.body.from,
+      "recieverId":req.body.to
+    })
 
-  let lastMessage = sender.create({
-    'recieverId': req.body.recieverId,
-    'subject': req.body.subject,
-    'message': req.body.message,
-    'status': req.body.status
-  });
+    newMessage.id = messages_database.id;
+    messages_database.save(newMessage);
+    res.json({
+      "status": 201,
+      "data": [newMessage]
+    })
+  }
+})
+
+//api to fetch all recieved mails
+app.get('/v2/messages', (req, res) => {
+  let allMessages=messages_database.allReceived(2);
   res.json({
-    "status": 201,
-    "data": [lastMessage]
+    "status":200,
+    "data":[
+      allMessages
+    ]
   })
 })
+
+
+//api to fetch all unread mails
+app.get('/v2/messages/unread', (req, res) => {
+  let allMessages=messages_database.allUnread('unread');
+  res.json({
+    "status":200,
+    "data":[
+      allMessages
+    ]
+  })
+})
+//api to fetch all sent mails
+app.get('/v2/messages/sent', (req, res) => {
+  let allMessages=messages_database.allSent('sent');
+  res.json({
+    "status":200,
+    "data":[
+      allMessages
+    ]
+  })
+})
+
+//api to fetch individual  mails
+app.get('/v2/messages/:id', (req, res) => {
+  let message = messages_database.messages.find((current)=>{
+    return current.id = req.params.id;
+  })
+  res.json({
+    "status":200,
+    "data":[
+      message
+    ]
+  })
+})
+
+
+
 
 //listen for requests
 app.listen(process.env.PORT || 4000, function () {
