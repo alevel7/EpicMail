@@ -220,6 +220,7 @@ app.delete('/v2/messages/:id', (req, res) => {
   let messageId = messages_database.messages.findIndex((current) => {
     return current.id == req.params.id;
   })
+  
   let message =  messages_database.messages[messageId];
   messages_database.messages[messageId] = '';
   res.json({
