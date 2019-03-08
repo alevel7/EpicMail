@@ -9,7 +9,7 @@ let randtoken = require('rand-token');
 
 describe('rest api tests', function () {
     this.timeout(5000) //how long to await a response in ms
-    describe('Api endpoint  /v2/auth/signup', function () {
+    describe('Api endpoint POST /v2/auth/signup', function () {
 
         it("should create a new user", function () {
             return chai.request(app)
@@ -46,7 +46,7 @@ describe('rest api tests', function () {
 
         })
     })
-    describe("Api endpoint /v2/auth/login", function () {
+    describe("Api endpoint POST /v2/auth/login", function () {
         it("return user details if user exist", function () {
             return chai.request(app)
                 .post("/v2/auth/login")
@@ -74,5 +74,41 @@ describe('rest api tests', function () {
                 })
         })
     });
-  
+    describe("Api endpoint POST /v2/messages", function () {
+        it("create a new message with status 201", function () {
+            return chai.request(app)
+                .post('/v2/messages')
+                .send({
+                    "from": 1,
+                    "subject": "entry cup championship",
+                    "message": "win to win the championship",
+                    "status": "sent",
+                    "to": 2
+                })
+                .then(function (res) {
+                    expect(res).to.have.status(201);
+                    expect(res).to.be.json;
+                    expect(res.body).to.be.an('object');
+                    expect(res.body.data[0].status).to.equal('sent');
+                })
+        })
+        it("should return bad requst with status 406", function () {
+            return chai.request(app)
+                .post('/v2/messages')
+                .send({
+                    "from": null,
+                    "subject": "entry cup championship",
+                    "message": "win to win the championship",
+                    "status": "sent",
+                    "to": 2
+                })
+                .then(function (res) {
+                    expect(res).to.have.status(406);
+                    expect(res).to.be.json;
+                })
+        })
+    })
+    describe("Api endpoint GET /v2/messages",function(){
+        it("should return all ")
+    })
 })
