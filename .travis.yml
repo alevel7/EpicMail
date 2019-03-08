@@ -17,5 +17,3 @@ notifications:
     on_success: change
     on_failure: always
 
-before_install:
-  - npm i -g npm@10.15.1
