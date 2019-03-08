@@ -108,7 +108,16 @@ describe('rest api tests', function () {
                 })
         })
     })
-    describe("Api endpoint GET /v2/messages",function(){
-        it("should return all ")
+    describe("Api endpoint GET /v2/messages", function () {
+        it("should return all recieved messages", function () {
+            return chai.request(app)
+                .get("/v2/messages")
+                .then(function (res) {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.json;
+                    expect(res.body).to.be.an('object');
+                    expect(res.body.data).to.be.an('array');
+                })
+        })
     })
 })

@@ -166,7 +166,7 @@ app.post('/v2/messages', (req, res) => {
 //api to fetch all recieved mails
 app.get('/v2/messages', (req, res) => {
   let allMessages = messages_database.allReceived(2);
-  res.json({
+  res.status(200).json({
     "status": 200,
     "data": [
       allMessages
