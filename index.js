@@ -107,7 +107,7 @@ app.post('/v2/auth/signup', (req, res) => {
   newUser.id = users_database.id;
   users_database.save(newUser);
   console.log(users_database.users)
-  res.json({
+  res.status(201).json({
     "status": 201,
     "data": [newUser]
   })
@@ -220,7 +220,7 @@ app.delete('/v2/messages/:id', (req, res) => {
   let messageId = messages_database.messages.findIndex((current) => {
     return current.id == req.params.id;
   })
-  
+
   let message =  messages_database.messages[messageId];
   messages_database.messages[messageId] = '';
   res.json({
@@ -236,3 +236,5 @@ app.delete('/v2/messages/:id', (req, res) => {
 app.listen(process.env.PORT || 4000, function () {
   console.log("now listening for request")
 })
+
+module.exports = app;
