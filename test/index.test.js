@@ -120,4 +120,63 @@ describe('rest api tests', function () {
                 })
         })
     })
+    describe("Api endpoint GET /v2/messages/unread", function () {
+        it("should return all unread messages", function () {
+            return chai.request(app)
+                .get("/v2/messages/unread")
+                .then(function (res) {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.json;
+                    expect(res.body).to.be.an('object');
+                    expect(res.body.data).to.be.an('array');
+                    expect(res.body.data[0].status).to.equal("unread");
+                })
+        })
+    })
+    describe("Api endpoint GET /v2/messages/sent", function () {
+        it("should return all sent messages", function () {
+            return chai.request(app)
+                .get("/v2/messages/sent")
+                .then(function (res) {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.json;
+                    expect(res.body).to.be.an('object');
+                    expect(res.body.data).to.be.an('array');
+                    expect(res.body.data[0].status).to.equal("sent");
+                })
+        })
+    })
+    describe("Api endpoint GET /v2/messages/:id", function () {
+        it("should return a mail message with :id", function () {
+            return chai.request(app)
+                .get("/v2/messages/1")
+                .then(function (res) {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.json;
+                    expect(res.body).to.be.an('object');
+                    expect(res.body).to.have.property('data').with.lengthOf(1)
+                })
+        })
+        it("should return 404 if mail doesnt exist", function(){
+            return chai.request(app)
+            .get("/v2/messages/123")//no mail with id 123
+            .then(function (res) {
+                expect(res).to.have.status(404);
+            
+            })
+        })
+    })
+    describe("Api endpoint DELETE /v2/messages/:id", function () {
+        it("should return a deleted mail message with :id", function () {
+            return chai.request(app)
+                .delete("/v2/messages/1")
+                .then(function (res) {
+                    expect(res).to.have.status(200);
+                    expect(res).to.be.json;
+                    expect(res.body).to.be.an('object');
+                    //expect(res.body.data[0].message).to.equal("deleted")
+                })
+        })
+
+    })
 })

@@ -19,7 +19,23 @@ module.exports = {
         },
         db: class message_db {
             constructor() {
-                this.messages = [];
+                this.messages = [{
+                    "senderId": 1,
+                    "recieverId": 2,
+                    "createdOn": "2019-03-08T21:39:12.330Z",
+                    "subject": "entry cup championship",
+                    "message": "win to win the championship",
+                    "status": "unread",
+                    "id": 1
+                  },{
+                    "senderId": 1,
+                    "recieverId": 2,
+                    "createdOn": "2019-03-08T21:39:12.330Z",
+                    "subject": "entry cup championship",
+                    "message": "win to win the championship",
+                    "status": "sent",
+                    "id": 2
+                  }];
                 this.id = 1;
             }
             save(message) {

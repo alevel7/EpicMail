@@ -178,64 +178,67 @@ app.get('/v2/messages', (req, res) => {
 //api to fetch all unread mails
 app.get('/v2/messages/unread', (req, res) => {
   let allMessages = messages_database.allUnread('unread');
-  res.json({
-    "status": 200,
-    "data": [
-      allMessages
-    ]
-  })
+  if (allMessages) {
+    res.status(200).json({
+      "status": 200,
+      "data": allMessages
+    })
+  } else {
+    res.status(200).json({
+      "status": 200,
+      "data": []
+    })
+  }
 })
 //api to fetch all sent mails
 app.get('/v2/messages/sent', (req, res) => {
   let allMessages = messages_database.allSent('sent');
-  res.json({
+  res.status(200).json({
     "status": 200,
-    "data": [
-      allMessages
-    ]
+    "data": allMessages
+
   })
 })
 
-//api to fetch individual  mails
-app.get('/v2/messages/:id', (req, res) => {
-  let message = messages_database.messages.find((current) => {
-    return current.id = req.params.id;
-  })
-  res.json({
-    "status": 200,
-    "data": [
-      message
-    ]
-  })
-})
 
 
 //api to fetch individual  mails
 app.get('/v2/messages/:id', (req, res) => {
   let message = messages_database.messages.find((current) => {
-    return current.id = req.params.id;
+    return current.id == req.params.id;
   })
-  res.json({
-    "status": 200,
-    "data": [
-      message
-    ]
-  })
+  if (message) {
+    res.status(200).json({
+      "status": 200,
+      "data": [
+        message
+      ]
+    })
+  } else {
+    res.status(404).json({
+      "status": 404,
+      "data": []
+    })
+  }
+
 })
 
 app.delete('/v2/messages/:id', (req, res) => {
-  let messageId = messages_database.messages.findIndex((current) => {
+  let message = messages_database.messages.find((current) => {
     return current.id == req.params.id;
   })
+  let messageId = message.id;
+  let index = messages_database.messages.findIndex((current) => {
+    return current.id == messageId;
+  })
+    messages_database.messages[index] = '';
+    res.status(200).json({
+      "status": 200,
+      "data": [{
+        "message": message
+      }]
+    });
 
-  let message = messages_database.messages[messageId];
-  messages_database.messages[messageId] = '';
-  res.json({
-    "status": 200,
-    "data": [{
-      "message": message.message
-    }]
-  });
 })
 
 
