@@ -122,7 +122,7 @@ app.post('/v2/auth/signup', (req, res) => {
 //api to handle log in 
 app.post('/v2/auth/login', (req, res) => {
   let current_user = users_database.findOne(req.body.email);
-  console.log(current_user);
+  //console.log(current_user);
   if (current_user && current_user.password === req.body.password) {
     users_database.logIn(req.body.email);
     res.status(200).json({
