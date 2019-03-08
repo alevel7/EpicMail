@@ -20,8 +20,25 @@ module.exports = {
     },
     db: class user_db {
         constructor() {
-            this.users = []
-            this.id = 1;
+            this.users = [ {
+                "token": "S64N1bNiEK6994ua",
+                "email": "kazeem@epicmail.com",
+                "firstName": "kazem",
+                "lastName": "me",
+                "password": "sgff4356",
+                "login": false,
+                "id": 1
+              },
+              {
+                "token": "Cq8CN0w9de42ge0i",
+                "email": "kazeem@epicmail.com",
+                "firstName": "kazem",
+                "lastName": "me",
+                "password": "sgff4356",
+                "login": false,
+                "id": 2
+              }]
+            this.id = this.users.length+1;
         }
         save(user) {
             this.users.push(user);

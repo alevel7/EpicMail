@@ -98,19 +98,26 @@ app.get('/v1/messages/:id', (req, res) => {
 
 //post routes to version two for rest api
 app.post('/v2/auth/signup', (req, res) => {
-  const newUser = new user().create({
-    'email': req.body.email,
-    'firstName': req.body.firstName,
-    'lastName': req.body.lastName,
-    'password': req.body.password
-  });
-  newUser.id = users_database.id;
-  users_database.save(newUser);
-  console.log(users_database.users)
-  res.status(201).json({
-    "status": 201,
-    "data": [newUser]
-  })
+  if (!req.body.email && !req.body.password) {
+    res.status(406).json({
+      "status": 406,
+      "data": []
+    })
+  } else {
+    const newUser = new user().create({
+      'email': req.body.email,
+      'firstName': req.body.firstName,
+      'lastName': req.body.lastName,
+      'password': req.body.password
+    });
+    newUser.id = users_database.id;
+    users_database.save(newUser);
+    // console.log(users_database.users)
+    res.status(201).json({
+      "status": 201,
+      "data": [newUser]
+    })
+  }
 })
 //api to handle log in 
 app.post('/v2/auth/login', (req, res) => {
@@ -118,12 +125,12 @@ app.post('/v2/auth/login', (req, res) => {
   console.log(current_user);
   if (current_user && current_user.password === req.body.password) {
     users_database.logIn(req.body.email);
-    res.json({
+    res.status(200).json({
       "status": 200,
       "data": [current_user]
     })
   } else {
-    res.json({
+    res.status(404).json({
       "status": 404,
       "data": []
     })
@@ -133,7 +140,7 @@ app.post('/v2/auth/login', (req, res) => {
 //api to process sent messages
 app.post('/v2/messages', (req, res) => {
   if (!req.body.from) {
-    res.json({
+    res.status(406).json({
       "status": 406,
       "data": []
     })
@@ -149,7 +156,7 @@ app.post('/v2/messages', (req, res) => {
 
     newMessage.id = messages_database.id;
     messages_database.save(newMessage);
-    res.json({
+    res.status(201).json({
       "status": 201,
       "data": [newMessage]
     })
@@ -221,7 +228,7 @@ app.delete('/v2/messages/:id', (req, res) => {
     return current.id == req.params.id;
   })
 
-  let message =  messages_database.messages[messageId];
+  let message = messages_database.messages[messageId];
   messages_database.messages[messageId] = '';
   res.json({
     "status": 200,
