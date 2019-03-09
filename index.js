@@ -92,9 +92,33 @@ app.get('/v1/messages/sent', (req, res) => {
 app.get('/v1/messages/:id', (req, res) => {
   res.render('viewmail')
 })
+//post routes to version one for front end
+app.post("/v1/auth/signup", (req, res)=>{
+  if(!req.body.email && !req.body.password){
+    req.flash('error_msg', 'email or password invalid');
+  }
+  else{
+    const newUser = new user().create({
+      'email': req.body.email,
+      'firstName': req.body.firstName,
+      'lastName': req.body.lastName,
+      'password': req.body.password
+    });
+    newUser.id = users_database.id;
+    users_database.save(newUser);
+    req.flash('success_msg', 'Registration Successful');
+    res.redirect('/v1/index')
+  }
+})
 
-
-
+//api to handle log in 
+app.post("/v1/auth/login",(req,res)=>{
+  let current_user = users_database.findOne(req.body.email);
+  if (current_user && current_user.password === req.body.password) {
+    users_database.logIn(req.body.email);
+    res.redirect('/v1/messages')
+  }
+})
 
 //post routes to version two for rest api
 app.post('/v2/auth/signup', (req, res) => {

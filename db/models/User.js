@@ -31,7 +31,7 @@ module.exports = {
               },
               {
                 "token": "Cq8CN0w9de42ge0i",
-                "email": "kazeem@epicmail.com",
+                "email": "alevel7@gmail.com",
                 "firstName": "kazem",
                 "lastName": "me",
                 "password": "sgff4356",
