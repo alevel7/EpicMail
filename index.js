@@ -117,6 +117,9 @@ app.post("/v1/auth/login",(req,res)=>{
   if (current_user && current_user.password === req.body.password) {
     users_database.logIn(req.body.email);
     res.redirect('/v1/messages')
+  }else{
+    req.flash('error_msg', 'email or password invalid');
+    res.redirect("/v1/index");
   }
 })
 
