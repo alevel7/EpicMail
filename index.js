@@ -96,8 +96,13 @@ app.get('/v1/messages/:id', (req, res) => {
 app.post("/v1/auth/signup", (req, res)=>{
   if(!req.body.email && !req.body.password){
     req.flash('error_msg', 'email or password invalid');
+    res.redirect('/v1/auth/signup')
   }
-  else{
+  if(users_database.findOne(req.body.email)){
+    req.flash('error-msg', 'email already taken');
+    res.redirect('/v1/auth/signup')
+  }
+  else{ 
     const newUser = new user().create({
       'email': req.body.email,
       'firstName': req.body.firstName,
@@ -122,7 +127,28 @@ app.post("/v1/auth/login",(req,res)=>{
     res.redirect("/v1/index");
   }
 })
+//api to process sent messages
+app.post('/v1/messages', (req, res) => {
+  if (!req.body.from || !req.body.to) {
+    
+  } else {
+    const newMessage = new message().create({
+      "subject": req.body.subject,
+      "message": req.body.message,
+      "parentMessageId": 0,
+      "status": req.body.status,
+      "senderId": req.body.from,
+      "recieverId": req.body.to
+    })
 
+    newMessage.id = messages_database.id;
+    messages_database.save(newMessage);
+    res.status(201).json({
+      "status": 201,
+      "data": [newMessage]
+    })
+  }
+})
 //post routes to version two for rest api
 app.post('/v2/auth/signup', (req, res) => {
   if (!req.body.email && !req.body.password) {
