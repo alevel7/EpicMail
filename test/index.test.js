@@ -77,7 +77,7 @@ describe('rest api tests', function () {
                 })
         })
     });
-    describe("Api endpoint POST /messages", function () {
+    describe("Api endpoint POST /v1/messages", function () {
         it("create a new message with status 201", function () {
             return chai.request(app)
                 .post('/v1/messages')
@@ -112,7 +112,7 @@ describe('rest api tests', function () {
                 })
         })
     })
-    describe("Api endpoint GET /messages", function () {
+    describe("Api endpoint GET /v1/messages", function () {
         it("should return all recieved messages", function () {
             return chai.request(app)
                 .get("/v1/messages")
@@ -126,7 +126,7 @@ describe('rest api tests', function () {
                 })
         })
     })
-    describe("Api endpoint GET /v2/messages/unread", function () {
+    describe("Api endpoint GET /v1/messages/unread", function () {
         it("should return all unread messages", function () {
             return chai.request(app)
                 .get("/v1/messages/unread")
@@ -139,7 +139,7 @@ describe('rest api tests', function () {
                 })
         })
     })
-    describe("Api endpoint GET /v2/messages/sent", function () {
+    describe("Api endpoint GET /v1/messages/sent", function () {
         it("should return all sent messages", function () {
             return chai.request(app)
                 .get("/v1/messages/sent")
@@ -152,7 +152,7 @@ describe('rest api tests', function () {
                 })
         })
     })
-    describe("Api endpoint GET /v2/messages/:id", function () {
+    describe("Api endpoint GET /v1/messages/:id", function () {
         it("should return a mail message with :id", function () {
             return chai.request(app)
                 .get("/v1/messages/0")
