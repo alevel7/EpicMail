@@ -13,7 +13,7 @@ deploy:
 notifications:
   email:
     recipients:
-    - julio@packagecloud.io
+    - alevel7@gmail.com
     on_success: change
     on_failure: always
 
