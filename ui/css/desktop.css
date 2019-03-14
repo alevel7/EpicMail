@@ -80,7 +80,7 @@ label {
 }
 /*the navtop*/
 nav {
-    background: #0878bd;
+    background: #3c58f7;
     color: white;
     display: flex;
     border-bottom: 1px solid white;
@@ -110,22 +110,28 @@ nav>img{
 .indexlogo h4 {
     display: none;
 }
+.dimg{
+    /* width: 500px; */
+    width: 70vw;
+}
 
 .form {
     display: flex;
+
 }
 
 .form>form {
     background: #0878bd;
-    margin-top: 2.5rem;
     margin-left: auto;
-    margin-right: 2.5rem;
     padding: 2.5rem;
     box-shadow: -3px 2px 5px rgb(58, 56, 56);
-    border-radius: 2rem;
+    border-top-left-radius: 2rem;
     width: 20rem;
     color: white;
     text-align: center;
+    background: #3c58f7;
+    width: 30vw;
+  
 }
 
 .form>form h4 {
@@ -180,7 +186,7 @@ nav>img{
     display: flex;
 }
 .main-box{
-    background: #0a1970;
+    background: #0d4a70;
     width: 85vw;
     padding: 10px;
     overflow: auto;
@@ -230,7 +236,7 @@ nav>img{
     background: #0e27a0;
 }
 .container{
-    background: #0a1970;
+    background: #022f58;
 }
 /*inbox mail list view*/
 .mail{
@@ -262,7 +268,9 @@ nav>img{
 
 /*compose mail css*/
 .compose_mail{
-    color: white;
+    color: rgb(248, 239, 239);
+    margin-left: 20px;
+    width: 600px;
 }
 .compose_mail button{
     background: #0e27a0;

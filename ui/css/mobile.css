@@ -3,9 +3,8 @@
     padding: 0;
     font-family: Helvetica,Georgia, 'Times New Roman', Times, serif;
 }
-/*sign up page form*/
 .form{
-    max-width: 200px;
+    width: 200px;
     min-width: 200px;
     margin: auto;
     margin-top: 5%;
@@ -17,7 +16,7 @@
     box-shadow: 2px 2px 2px gray;
 }
 .form img{
-    min-width: 45%;
+    max-width: 45%;
     height: 90px;
 }
 .form-group>input{
