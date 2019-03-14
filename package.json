@@ -4,7 +4,8 @@
   "description": "An app for sending and recieving information",
   "main": "index.js",
   "scripts": {
-    "test": "mocha || true"
+    "test": " nyc mocha || true",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,7 @@
     "chai-http": "^4.2.1",
     "connect-flash": "^0.1.1",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.12.4",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",

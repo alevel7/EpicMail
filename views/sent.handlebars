@@ -31,17 +31,23 @@
             </ul>
         </div>
         <div class="main-box">
+           {{#each sents}}
             <form action="" class="mail">
                 <input type="checkbox" name="" id="">
-                <span class="last">feb 12</span>
+                <span class="last">{{createdOn}}</span>
                 <div>
                     <a href="viewmail.html">
-                        <h4>Scholarship Position</h4>
-                        <p>Government of Ireland Scholarship</p>
+                        <h4>{{subject}}</h4>
+                        <p>{{message}}</p>
                     </a>
                 </div>
                 <button class="delButton">Delete<img src="/public/img/trash.png" alt="trash"></button>
             </form>
+            {{else}}
+            <form action="" class="mail">
+                No sent mail available
+            </form>
+            {{/each}}
          
         </div>
         <div class="space">

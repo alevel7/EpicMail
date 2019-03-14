@@ -2,7 +2,7 @@
 <div class="container">
     <div class="special">
         <a href="" id="compose" class="ml-1 hidden"><img src="/public/img/message.png" alt="compose-logo"></a>
-        <p>Inbox</p>
+        <p>Compose</p>
 
         <ul>
             <li><img src="/public/img/trash_w.png" alt="inbox"><a href="outbox.html">Delete</a></li>
@@ -31,17 +31,17 @@
             </ul>
         </div>
         <div class="main-box">
-            <form action="/v1/messages" class="compose_mail" action="POST">
+            <form action="/v1/messages" class="compose_mail" method="POST">
                 <div class="form-group mb-1">
                     <label for="from" class="mediumText">From</label>
-                    <input type="text" name="from" id="from" class="formInput">
+                    <input type="text" name="from" id="from" class="formInput" value="{{loggedInUser}}" required>
                 </div>
                 <div class="form-group mb-1">
                     <label for="to" class="mediumText">To</label>
-                    <input type="text" name="to" id="to" class="formInput">
+                    <input type="text" name="to" id="to" class="formInput" required>
                 </div>
                 <div class="form-group mb-1">
-                    <input type="text" name="subject" id="subject" placeholder="Subject" class="formInput">
+                    <input type="text" name="subject" id="subject" placeholder="Subject" class="formInput" required>
                 </div>
                 <div class="form-group mb-1">
                     <textarea name="content" id="content" placeholder="Compose mail"
