@@ -12,8 +12,6 @@ deploy:
 
 notifications:
   email:
-    recipients:
-    - julio@packagecloud.io
     on_success: change
     on_failure: always
 
