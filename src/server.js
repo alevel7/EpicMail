@@ -7,14 +7,13 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
 const request = require('supertest');
-const users_dbms = require('./db/models/User')
-const message_dbms = require('./db/models/message')
 
+import user from '../controllers/user_controller';
+import messenger from '../controllers/message_controller';
 const app = express();
 
-const controller = require('./controllers/controller')
-const user_controller = new controller.user_controller()
-const message_controller= new controller.message_controller()
+const user_controller = new user()
+const message_controller= new messenger()
 // MIDDLEWARE WARES
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
@@ -57,9 +56,11 @@ app.get('/v1/messages/sent', message_controller.getAllSent)
 app.get('/v1/messages/unread', message_controller.getAllUnread)
 app.get('/v1/messages/:id',message_controller.getMail)
 app.delete('/v1/messages/:id',message_controller.deleteMail)
+
+
 //listen for requests
 app.listen(process.env.PORT || 4000, function () {
   console.log("now listening for request")
 })
 
-module.exports = app;
+export default app;

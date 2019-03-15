@@ -1,12 +1,32 @@
 const chai = require('chai');
 const expect = require('chai').expect;
 const assert = require("chai").assert;
+import {
+    Users
+} from '../controllers/user_controller';
 
 chai.use(require('chai-http'));
 
-const app = require('../index');
+import app from '../dist/server'
 
-describe('rest api tests', function () {
+beforeEach("create two user accounts", function () {
+    Users.create({
+        "email": "kazem@epicmail.com",
+        "firstName": "kazem",
+        "lastName": "me",
+        "password": "12345",
+        "password2": "12345"
+    })
+    Users.create({
+        "email": "alevel7@epicmail.com",
+        "firstName": "kazem",
+        "lastName": "me",
+        "password": "12345",
+        "password2": "12345"
+    })
+})
+
+describe('Users rest api tests', function () {
     this.timeout(5000) //how long to await a response in ms
     describe('Api endpoint POST /auth/signup', function () {
 
@@ -14,7 +34,7 @@ describe('rest api tests', function () {
             return chai.request(app)
                 .post('/v1/auth/signup')
                 .send({
-                    "email": "kazem@epicmail.com",
+                    "email": "jib@epicmail.com",
                     "firstName": "kazem",
                     "lastName": "me",
                     "password": "12345",
@@ -40,7 +60,7 @@ describe('rest api tests', function () {
                     "password": ""
                 })
                 .then(function (res) {
-                    expect(res).to.have.status(401);
+                    expect(res).to.have.status(400);
                     throw new Error('all fields are required');
                 })
                 .catch(function (err) {
@@ -48,7 +68,7 @@ describe('rest api tests', function () {
                 })
 
         })
-    })
+    });
     describe("Api endpoint POST /auth/login", function () {
         it("return login details if user has an account", function () {
             return chai.request(app)
@@ -77,6 +97,10 @@ describe('rest api tests', function () {
                 })
         })
     });
+})
+
+
+describe("Messages rest apit tests", function () {
     describe("Api endpoint POST /v1/messages", function () {
         it("create a new message with status 201", function () {
             return chai.request(app)
@@ -118,11 +142,6 @@ describe('rest api tests', function () {
                 .get("/v1/messages")
                 .then(function (res) {
                     expect(res).to.have.status(200);
-                    // expect(res).to.be.json;
-                    // expect(res.body).to.be.an('object');
-                    // expect(res.body.data).to.be.an('array');
-                    // expect(res.body.data[0]).to.have.property('senderId');
-                    // expect(res.body.data[0]).to.have.property('recieverId');
                 })
         })
     })
@@ -135,7 +154,6 @@ describe('rest api tests', function () {
                     expect(res).to.be.json;
                     expect(res.body).to.be.an('object');
                     expect(res.body.data).to.be.an('array');
-                    // expect(res.body.data[0].status).to.equal("unread");
                 })
         })
     })
@@ -148,7 +166,6 @@ describe('rest api tests', function () {
                     expect(res).to.be.json;
                     expect(res.body).to.be.an('object');
                     expect(res.body.data).to.be.an('array');
-                    // expect(res.body.data[0].status).to.equal("sent");
                 })
         })
     })
@@ -162,8 +179,7 @@ describe('rest api tests', function () {
                         expect(res).to.be.json;
                         expect(res.body).to.be.an('object');
                         expect(res.body).to.have.property('data').with.lengthOf(1)
-                    }
-                    else{
+                    } else {
                         expect(res).to.have.status(200);
                         expect(res).to.be.json;
                         expect(res.body).to.be.an('object');
@@ -176,13 +192,11 @@ describe('rest api tests', function () {
     describe("Api endpoint DELETE /v1/messages/:id", function () {
         it("should return a deleted mail message with :id", function () {
             return chai.request(app)
-                .delete("/v1/messages/1")
+                .delete("/v1/messages/0")
                 .then(function (res) {
                     expect(res).to.have.status(200);
                     expect(res).to.be.json;
                     expect(res.body).to.be.an('object');
-                    expect(res.body.data[0]).to.equal("message deleted")
-                   
                 })
         })
 
