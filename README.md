@@ -8,7 +8,7 @@ _HTML, CSS, JAVASCRIPT_
 ## Author
 -kazeem Taiwo Adeyinka
 
-##Features
+## Features
 * Users can sign up.
 * Users can login. 
 * Users can create groups. 
