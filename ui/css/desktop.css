@@ -120,7 +120,7 @@ nav>img{
 
 }
 
-.form>form {
+.signForm {
     background: #0878bd;
     margin-left: auto;
     padding: 2.5rem;
@@ -133,7 +133,19 @@ nav>img{
     width: 30vw;
   
 }
-
+.resetForm{
+    background: #0878bd;
+    margin: auto;
+    padding: 2.5rem;
+    box-shadow: -3px 2px 5px rgb(58, 56, 56);
+    border-top-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    width: 20rem;
+    color: white;
+    text-align: center;
+    background: #3c58f7;
+    width: 30vw;
+}
 .form>form h4 {
     color: white;
     text-align: center;
