@@ -27,7 +27,6 @@ beforeEach("create two user accounts", function () {
 })
 
 describe('Users rest api tests', function () {
-    this.timeout(5000) //how long to await a response in ms
     describe('Api endpoint POST /auth/signup', function () {
 
         it("should create a new user", function () {
