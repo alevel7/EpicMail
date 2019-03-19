@@ -1,14 +1,7 @@
 const uid = require('rand-token').uid;
-module.exports={
-    user:class User{
+class User{
     constructor(){
-        this.db = [{
-            "email": "alevel7@epicmail.com",
-            "firstName": "kazem",
-            "lastName": "me",
-            "password": "12345",
-            "id":0    
-        }]
+        this.db = []
         this.id = this.db.length
     }
     create(data){
@@ -37,4 +30,5 @@ module.exports={
     }
 
 }
-}
+
+export default User;

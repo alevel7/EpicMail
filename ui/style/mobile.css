@@ -3,30 +3,39 @@
     padding: 0;
     font-family: Helvetica,Georgia, 'Times New Roman', Times, serif;
 }
+/*sign up page form*/
 .form{
-    width: 200px;
+    max-width: 200px;
     min-width: 200px;
     margin: auto;
     margin-top: 5%;
     color: white;
-    background: #0878bd;
+    background: #2443da;
     text-align: center;
     padding: 4%;
     border-radius: 5px;
     box-shadow: 2px 2px 2px gray;
 }
 .form img{
-    max-width: 45%;
+    min-width: 45%;
     height: 90px;
 }
 .form-group>input{
+    border-radius: 5px;
     height: 20px;
 }
-
+.form-group>input:focus{
+    border-color:  #2445e7;
+}
 .form-group>label{
     display: block;
 }
-
+form button{
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 2px;
+    width: 70px;
+}
 form button:hover{
     background: #0e27a0;
     color: white;
@@ -34,11 +43,11 @@ form button:hover{
 .form>form a{
     text-decoration: none;
     color: white;
-    font-size: 15px;
+    font-size: 10px;
 }
 /*the navtop*/
 nav{
-    background: #0878bd;
+    background: #2443da;
     color: white;
     display: flex;
 }
@@ -52,21 +61,7 @@ nav{
     color: white;
     font-weight: bolder;
 }
-.aButton{
-    background: #0e27a0;
-    height: 1rem;
-    margin-top: 0.5rem;
-    margin-right    : 0.5rem;
-    padding: 0.5rem;
-    text-decoration: none;
-    color: white;
-    font-weight: bolder;
-    border: 1px solid white;
-}
-.aButton:hover{
-    background: #2543d8;
-}
-/*sign in form */
+
 .button{
     background: #3654ec;
     padding: 15px 32px;
@@ -77,9 +72,6 @@ nav{
 .button:hover{
     background: #0e27a0;
     color: white;
-}
-.form>form h4{
-    display: none;
 }
 
 /* inbox css*/
@@ -107,12 +99,8 @@ nav{
     flex: 1;
     cursor: pointer;
 }
-#dropmenu{
-    transition: display 2s ease-in;
-}
-#dropmenu li>img{
-    height: 1rem;
-    margin-right: 5px;
+.dropmenu{
+    transition: display 2s
 }
 .menu-lines{
     cursor: pointer;
@@ -178,14 +166,8 @@ nav{
     font-size:14px;
     color: #3654ec;
     font-weight: bold;
-    padding-top: 7px;
 }
-.mail>div{
-    width: 200px
-}
-.mail>div>a>p{
-    font-size: 0.8rem;
-}
+
 /*mail content css*/
 .content p{
     font-weight: 1000;
@@ -257,56 +239,4 @@ nav{
 .addbutton input:hover,.addbutton a:hover{
     background: #2443da;
     color: white;
-}
-
-/*refactored*/
-.form>form { 
-    max-width: 200px;
-    min-width: 200px;   
-}
-
-.formInput{
-    display: block;
-    width: 11rem;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 15px;
-    color: #555;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    transition: border-color ease-in-out .15s,
-}
-
-.formInput:focus{
-    border-color: #0e27a0;  
-}
-.mb-1{
-    margin-bottom: 1rem;
-}
-.delButton>img{
-    height: 2vh;
-}
-.mhidden{
-    display: none;
-}
-.form>form>button{
-    background: #0e27a0;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1rem;
-}
-.button {
-    text-decoration: none;
-    color: white;
-    border-left: 1px solid black;
-    border-radius: 1.5rem;
-}
-.special{
-    display: none;
-}
-.widerHeight{
-    height: 10rem;
 }
